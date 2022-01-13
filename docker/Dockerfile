@@ -2,6 +2,8 @@ FROM python:3.9
 
 RUN apt-get update && apt-get install libatlas-base-dev -y
 
+COPY ./server/requirements.txt /server/requirements.txt
+
 RUN pip3 install --index-url=https://www.piwheels.org/simple --no-cache-dir -r /server/requirements.txt;
 
 COPY ./server /server
