@@ -1,0 +1,14 @@
+Cross-Platform Multiplayer
+Steam Achievements
+In-App Purchases
+Partial Controller Support
+Remote Play on Phone
+Remote Play on Tablet
+Online PvP
+Online Co-op
+Single-player
+Full Controller Support
+Steam Cloud
+Steam Trading Cards
+Steam Workshop
+Valve Anti-Cheat enabled
