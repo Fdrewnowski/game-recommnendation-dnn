@@ -3,6 +3,7 @@ FROM python:3.9-slim
 COPY ./server /server
 COPY ./names_and_reps.pkl /server/names_and_reps.pkl
 
-RUN pip install -r /server/requirements.txt
+RUN apt install 
+RUN pip3 install -r /server/requirements.txt
 
-CMD ["python", "-m", "streamlit", "run", "/server/app.py", "--", "--rep-path", "/server/names_and_reps.pkl"]
+CMD ["python3", "-m", "streamlit", "run", "/server/app.py", "--", "--rep-path", "/server/names_and_reps.pkl"]
