@@ -5,7 +5,9 @@ import argparse
 from game_lib import load_data, calculate_point, get_top_n, get_games
 
 parser = argparse.ArgumentParser(description='Run streamlit server')
-parser.add_argument('--rep-path', default='./names_and_reps.pkl')
+parser.add_argument('--nonlp-rep-path', default='./names_and_reps-nonlp.pkl')
+parser.add_argument('--nlp-rep-path', default='./names_and_reps-nlp.pkl')
+parser.add_argument('--cbog-rep-path', default='./names_and_reps-cbog.pkl')
 args = parser.parse_args()
 
 data = load_data(args.rep_path)
@@ -13,6 +15,7 @@ data = load_data(args.rep_path)
 unique_names = data['name'].unique()
 
 st.header("Recomendation engine for games")
+model = st.radio("Choose model for representations", ["No NLP", "NLP", "CBoG"])
 
 game_1 = st.selectbox(
      'Game one',
