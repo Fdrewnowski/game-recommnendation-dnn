@@ -11,17 +11,16 @@ parser.add_argument('--cbog-rep-path', default='./names_and_reps-cbog.pkl')
 args = parser.parse_args()
 
 @st.cache(suppress_st_warning=True)
-def load_data(model):
-    if model == "No NLP":
-        return load_data(args.nonlp_rep_path)
+def load_cached_data(model):
     if model == "NLP":
         return load_data(args.nlp_rep_path)
     if model == "CBoG":
         return load_data(args.cbog_rep_path)
+    return load_data(args.nonlp_rep_path)
 
 st.header("Recomendation engine for games")
 model = st.radio("Choose model for representations", ["No NLP", "NLP", "CBoG"])
-data = load_data(model)
+data = load_cached_data(model)
 unique_names = data['name'].unique()
 
 game_1 = st.selectbox(
