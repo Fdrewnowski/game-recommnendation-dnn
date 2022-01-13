@@ -1,10 +1,14 @@
 import streamlit as st
 import pandas as pd
+import argparse
 
 from game_lib import load_data, calculate_point, get_top_n, get_games
 
+parser = argparse.ArgumentParser(description='Run streamlit server')
+parser.add_argument('--rep-path', default='./names_and_reps.pkl')
+args = parser.parse_args()
 
-data = load_data("./names_and_reps.pkl")
+data = load_data(args.rep_path)
 
 unique_names = data['name'].unique()
 
