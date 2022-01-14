@@ -21,7 +21,9 @@ def load_cached_data(model):
 
 @st.cache(suppress_st_warning=True)
 def get_fluff_df():
-    return pd.read_csv(args.fluff_data_path)
+    fluff = pd.read_csv(args.fluff_data_path)
+    fluff = fluff.drop_duplicates(subset=['name'])
+    return fluff
 
 fluff = get_fluff_df()
 st.header("Recomendation engine for games")

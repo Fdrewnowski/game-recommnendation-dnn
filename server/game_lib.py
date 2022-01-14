@@ -21,7 +21,7 @@ def calculate_point(first_game, second_game, weight):
     return result
 
 
-def get_top_n(target,data, n, standarize=True):
+def get_top_n(target, data, n, standarize=True):
     vals = data['representation'].values.tolist()
     target = [target]
     if standarize:
