@@ -5,9 +5,6 @@ RUN apt-get update && apt-get install libatlas-base-dev -y
 COPY ./server/requirements.txt /server/requirements.txt
 RUN pip3 install --index-url=https://www.piwheels.org/simple --no-cache-dir -r /server/requirements.txt
 
-COPY ./server/requirements_compile.txt /server/requirements_compile.txt
-RUN pip3 install -r /server/requirements_compile.txt
-
 COPY ./server /server
 COPY ./names_and_reps-nlp.pkl /server/names_and_reps-nlp.pkl
 COPY ./names_and_reps-cbog.pkl /server/names_and_reps-cbog.pkl

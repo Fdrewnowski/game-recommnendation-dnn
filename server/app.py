@@ -21,7 +21,7 @@ def load_cached_data(model):
 
 @st.cache(suppress_st_warning=True)
 def get_fluff_df():
-    return pd.read_csv('fluff_data.csv')
+    return pd.read_csv(args.fluff_data_path)
 
 fluff = get_fluff_df()
 st.header("Recomendation engine for games")
@@ -51,7 +51,7 @@ if game_1 and game_2 and weight and number and st.button('Search'):
     st.header("TOP {} recomendations - the smaller score, the better!".format(number))
     recomendations_fluffed = recomendations.merge(fluff, how="left", left_on='Game name', right_on='name')[['Game name', 'Score', 'url', 'img_url']]
     for i, (index, rec) in enumerate(recomendations_fluffed.iterrows()):
-    	col1, col2, col3 = st.columns([1, 6, 3])
+    	col1, col2, col3 = st.beta_columns([1, 6, 3])
     	col1.subheader(f"{i+1}")
     	col2.subheader(f"{rec['Game name']}, score: {rec['Score']:.3f}! [Store link!]({rec['url']})")
     	col3.image(f"{rec['img_url']}")
