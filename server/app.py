@@ -28,6 +28,7 @@ def get_fluff_df():
 fluff = get_fluff_df()
 st.header("Recomendation engine for games")
 model = st.radio("Choose model for representations", ["No NLP", "NLP", "CBoG"])
+standarize = st.checkbox("Use standarization")
 data = load_cached_data(model)
 unique_names = data['name'].unique()
 
@@ -49,7 +50,7 @@ number = st.number_input('Select number of recomendations:', 0,50,10)
 st.write('Show top',number,' recomendations')
 
 if game_1 and game_2 and weight and number and st.button('Search'):
-    recomendations = pd.DataFrame(get_games(game_1, game_2, weight, data, number), columns=['Game name','Score'])
+    recomendations = pd.DataFrame(get_games(game_1, game_2, weight, data, number, standarize), columns=['Game name','Score'])
     st.header("TOP {} recomendations - the smaller score, the better!".format(number))
     recomendations_fluffed = recomendations.merge(fluff, how="left", left_on='Game name', right_on='name')[['Game name', 'Score', 'url', 'img_url']]
     for i, (index, rec) in enumerate(recomendations_fluffed.iterrows()):

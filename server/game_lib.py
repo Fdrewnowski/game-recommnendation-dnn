@@ -4,6 +4,7 @@ import pandas as pd
 
 def load_data(file_name):
     names_and_reps = pd.read_pickle(file_name)
+    names_and_reps = names_and_reps.drop_duplicates(subset=['name'])
     return names_and_reps
 
 
@@ -14,7 +15,7 @@ def calculate_point(first_game, second_game, weight):
     return result
 
 
-def get_top_n(target, data, n, standarize=True):
+def get_top_n(target, data, n, standarize=False):
     vals = data['representation'].values.tolist()
     target = [target]
     if standarize:
@@ -29,7 +30,7 @@ def get_top_n(target, data, n, standarize=True):
     return games
 
 
-def get_games(first_name, second_name, weight, data, n):
+def get_games(first_name, second_name, weight, data, n, standarize):
     try:
         first_game = data[data['name']==first_name]['representation'].values[0]
         second_game = data[data['name']==second_name]['representation'].values[0]
@@ -37,5 +38,5 @@ def get_games(first_name, second_name, weight, data, n):
         print("No such games in dataset")
         return [()]
     game_in_space = calculate_point(first_game, second_game, weight)
-    games = get_top_n(game_in_space, data, n)
+    games = get_top_n(game_in_space, data, n, standarize)
     return games
