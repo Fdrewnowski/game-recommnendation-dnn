@@ -9,15 +9,8 @@ def load_data(file_name):
 
 def calculate_point(first_game, second_game, weight):
     result = [0]*len(first_game)
-
     for index in range(len(first_game)):
-        difference_tmp = abs(first_game[index] - second_game[index])
-        if first_game[index] > second_game[index]:
-            result[index] = first_game[index] - (difference_tmp * (1-weight))
-        elif first_game[index] < second_game[index]:
-            result[index] = first_game[index] + (difference_tmp * (1-weight))
-        else:
-            result[index] = 0
+        result[index] = weight * first_game[index] + second_game[index] * (1-weight)
     return result
 
 
